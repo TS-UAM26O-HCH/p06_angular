@@ -35,8 +35,10 @@ export class Personal implements OnInit {
       );
     });
   }
+
   enviarFormulario() {
     if (this.formulario.valid) {
+      localStorage.setItem('datosFormularioPersonal', JSON.stringify(this.formulario.value));
       this.progresoService.completarPaso(0);
       this.progresoService.establecerPasoActual(1);
       this.router.navigate(['/cuenta']);
@@ -44,9 +46,11 @@ export class Personal implements OnInit {
       this.formulario.markAllAsTouched();
     }
   }
+
   cambiarIdioma(lang: string) {
     this.translate.use(lang);
   }
+
   regresar() {
     this.router.navigate(['/registro']);
   }
